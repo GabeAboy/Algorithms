@@ -1,15 +1,29 @@
 function tortoiseRace(array) {
   var answer = []
-  array.sort(function(a, b) {
-    return a - b;
-  });
-  console.log(array);
-  for (var i = 0; i < array.length; i++) {
-    if(array[i]===3)answer.push(7);
-    else if (array[i]===7)answer.push(3);
-    else answer.push(array[i]);
+  arr = array.slice();
+  var thirteen = arr.indexOf(13)
+
+  if(arr.indexOf(3)!=-1||arr.indexOf(7)!=-1){
+    arr.sort(function(a, b) {
+      return a - b;
+    });
+    for (var i = 0; i < arr.length; i++) {
+      if(arr[i]===3)answer.push(7);
+      else if (arr[i]===7)answer.push(3);
+      else answer.push(arr[i]);
+    }
+  }
+  if(thirteen>-1){
+    console.log('enter');
+    arr[thirteen]=17
+    arr.sort(function(a, b) {
+      return a - b;
+    });
+    arr[arr.indexOf(17)]=13
+    answer = arr
   }
 
 return answer
 }
-console.log(tortoiseRace([4, 2, 7, 5, 1, 3]));
+// tortoiseRace([12,13,14]);
+console.log(tortoiseRace([9,2,4,7,3]));
