@@ -23,22 +23,24 @@ function ticChecker(matrix) {
   }
   let column1 = []
   let column2 = []
+  let draw = []
 
   for (var i = 0; i < matrix.length; i++) {
-    if(1 in matrix[0])column1.push([i,matrix[i].indexOf(1)])
-    if(2 in matrix[0])column2.push([i,matrix[i].indexOf(2)])
+    if(1 in matrix[i])column1.push([i,matrix[i].indexOf(1)])
+    if(2 in matrix[i])column2.push([i,matrix[i].indexOf(2)])
+    else if(matrix[i].indexOf(0)>-1)draw.push(0)
   }
 
   column2 = column2.join('').replace(/,/g,'')
   column1 = column1.join('').replace(/,/g,'')
-  console.log(column1);
-  console.log(column2);
+
   for (var variable in solutionArrays) {
     if (column1 === solutionArrays[variable]) return 1
     else if(column2 === solutionArrays[variable]) return 2
   }
-  return 0
+  if(draw.length === 0)return 0
+  else return -1
 }
-console.log(ticChecker([[0,2,1],
-                       [0,1,2],
-                       [1,2,0]]));
+console.log(ticChecker([[1,1,2],
+                       [2,1,1],
+                       [2,2,2]]));
