@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Satenyoboxes</title>
+  </head>
+  <body >
+
+    <canvas id="canvas" width="1000" height="500"></canvas>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let context = canvas.getContext("2d");
+      const pointNumber = 10;
+      const points = [];
+      for(let i = 0; i < pointNumber; i++) {
+        points.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          width: Math.random() * 100,
+          height: Math.random() * 100,
+          xDelta: 1,
+          yDelta: 1,
+          color: 'black'
+        });
+      }
+      const draw = function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        points.forEach(function (thisBox) {
+          context.fillStyle = thisBox.color;
+          context.fillRect(thisBox.x, thisBox.y, thisBox.width, thisBox.height);
+          let edgeX = thisBox.x + thisBox.width;
+          let edgeY = thisBox.y + thisBox.height;
+          if (edgeX >= canvas.width || thisBox.x <= 0) {
+            thisBox.xDelta *= -1;
+          }
+          if (edgeY >= canvas.height || thisBox.y <= 0) {
+            thisBox.yDelta *= -1;
+          }
+          thisBox.x += thisBox.xDelta;
+          thisBox.y += thisBox.yDelta;
+        })
+      };
+      const animate = function () {
+        draw ();
+        setTimeout (animate, 10);
+      }
+      animate ();
+    </script>
+  </body>
+</html>

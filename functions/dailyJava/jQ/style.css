@@ -1,0 +1,3 @@
+body{background-color: white;}
+.to-do-item{cursor: pointer;}
+.to-do-complete{text-decoration: line-through;}
