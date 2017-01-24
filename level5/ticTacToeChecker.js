@@ -41,6 +41,6 @@ function ticChecker(matrix) {
   if(draw.length === 0)return 0
   else return -1
 }
-console.log(ticChecker([[1,1,2],
+console.log(ticChecker([[1,0,2],
                        [2,1,1],
-                       [2,2,2]]));
+                       [2,1,1]]));
